@@ -9,6 +9,9 @@ Send a birthday reminder via e-mail to receivers.
 
 ```javascript
 {
+  "config": {
+    "from": "sender@example.com"
+  },
   "bmails": [
     {
       "kind": "birthday",

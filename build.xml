@@ -11,10 +11,16 @@
 			<arg value="src/index.php" />
 		</exec>
 	</target>
-	<target name="run_summary">
-		<exec executable="/usr/bin/php">
-			<arg value="src/index.php" />
-			<arg value="summary" />
-		</exec>
-	</target>
+  <target name="run_summary">
+    <exec executable="/usr/bin/php">
+      <arg value="src/index.php" />
+      <arg value="summary" />
+    </exec>
+  </target>
+  <target name="run_test">
+    <exec executable="/usr/bin/php">
+      <arg value="src/index.php" />
+      <arg value="test" />
+    </exec>
+  </target>
 </project>

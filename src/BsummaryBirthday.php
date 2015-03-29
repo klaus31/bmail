@@ -1,13 +1,6 @@
 <?php
-class BsummaryBirthday {
-  private $receivers;
-  private $events;
-  public function __construct(Array $bmail) {
-    usort($bmail['receivers'], array('BsummaryBirthday', 'sortReceivers'));
-    usort($bmail['events'], array('BsummaryBirthday', 'sortEvents'));
-    $this->receivers = $bmail['receivers'];
-    $this->events = $bmail['events'];
-  }
+require_once(__DIR__ . '/Bmail.php');
+class BsummaryBirthday extends Bmail {
   public function run() {
     $this->lineSep();
     $this->line('BIRTHDAYS');
@@ -20,17 +13,6 @@ class BsummaryBirthday {
       $this->line($this->createDateTime($event)->format('d.m.Y') . ': ' . $event['name']);
     }
     $this->lineSep();
-  }
-  private function createDateTime($event) {
-    return DateTime::createFromFormat('Y-m-d', $event['date']);
-  }
-  private function sortEvents($eventA, $eventB) {
-    $dateA = $this->createDateTime($eventA);
-    $dateB = $this->createDateTime($eventB);
-    return $dateA->format('md') > $dateB->format('md');
-  }
-  private function sortReceivers($receiverA, $receiverB) {
-    return strcasecmp($receiverA, $receiverB);
   }
   private function lineSep() {
     $this->line('---------');
