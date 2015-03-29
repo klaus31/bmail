@@ -2,14 +2,6 @@
 class BmailBirthday {
   private $events;
   private $receivers;
-  private function getMessage($event) {
-    return $event['name'] . " hat heute Geburtstag\n";
-  }
-  private function isCurrent($event) {
-    $date = DateTime::createFromFormat('Y-m-d', $event['date']);
-    $today = new DateTime();
-    return $today->format('md') == $date->format('md');
-  }
   public function __construct(Array $receivers, Array $events) {
     $this->receivers = $receivers;
     $this->events = $events;
@@ -28,5 +20,13 @@ class BmailBirthday {
         mail($receiver, 'Geburtstag', $message, $mailHeader);
       }
     }
+  }
+  private function getMessage($event) {
+    return $event['name'] . " hat heute Geburtstag\r\n";
+  }
+  private function isCurrent($event) {
+    $date = DateTime::createFromFormat('Y-m-d', $event['date']);
+    $today = new DateTime();
+    return $today->format('md') == $date->format('md');
   }
 }

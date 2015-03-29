@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="bmail" basedir=".">
 	<property file="./build-my.properties" />
-  <target name="deploy_prod">
-    <scp trust="yes" verbose="true" todir="${user}:${password}@${server}:${path}/.">
-      <fileset dir="src" />
-    </scp>
-  </target>
-  <target name="run">
-  	<exec executable="/usr/bin/php">
-  	<arg value="src/index.php" />
-  	</exec>
-  </target>
+	<target name="deploy_prod">
+		<scp trust="yes" verbose="true" todir="${user}:${password}@${server}:${path}/.">
+			<fileset dir="src" />
+		</scp>
+	</target>
+	<target name="run_bmails">
+		<exec executable="/usr/bin/php">
+			<arg value="src/index.php" />
+		</exec>
+	</target>
+	<target name="run_summary">
+		<exec executable="/usr/bin/php">
+			<arg value="src/index.php" />
+			<arg value="summary" />
+		</exec>
+	</target>
 </project>

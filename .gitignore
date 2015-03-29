@@ -1,4 +1,5 @@
 build-my.properties
 src/bmails.json
 .project
-.*~
+*~
+
