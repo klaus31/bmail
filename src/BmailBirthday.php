@@ -27,7 +27,16 @@ class BmailBirthday extends Bmail {
     }
   }
   private function getMessage($event) {
-    return $event['name'] . ' hat heute ' . $this->getAge($event) . ' mal die Sonne umrundet' . PHP_EOL;
+    switch($this->getAge($event) % 4) {
+      case 0:
+        return $event['name'] . ' hat heute zum ' . $this->getAge($event) . '. mal die Sonne umrundet' . PHP_EOL;
+      case 1:
+        return $event['name'] . ' hat heute das ' . $this->getAge($event) . '. Lebensjahr abgeschlossen' . PHP_EOL;
+      case 2:
+        return $event['name'] . ' feiert heute den ' . $this->getAge($event) . '. Geburtstag' . PHP_EOL;
+      default: // case 3:
+        return $event['name'] . ' ist heute vor ' . $this->getAge($event) . ' Jahren auf die Welt gekommen' . PHP_EOL;
+    }
   }
   private function getAge($event) {
     return date('Y') - $this->createDateTime($event)->format('Y');
